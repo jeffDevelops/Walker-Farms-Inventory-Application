@@ -1,0 +1,38 @@
+// SCSS Variables to be imported in .scss files for all component templates
+
+// Import Syntax: @import '<however many '../'s>/utilities/scss_vars'
+
+//---- Colors ----//
+
+$navy: #21447e; // GuidePoint Security Logo, and hover state border-top in nav
+$lt-navy: #366797; //Used for backgrounds, section titles, non-nav links, buttons
+
+$red: #a4504b;
+$drk-red: #64312e;
+
+$drk-gray: #31353e; // Used for footer
+$blue-gray: #657883; // Used for links in ALL-CAPS, section title text, page backgrounds, dropdown backgrounds, list bullets
+$med-gray: #6b6b6b; // Used for text
+$input-border: #dadadb;
+$placeholder-text: #83868a; // Used for text-input borders
+$lt-gray: #f5f5f5; // Used for light-gray backgrounds
+
+$black: #404040; // Used for Page Title in site map (directly under nav on subpages)
+$drk-black: #24282d; // Used for button hover states, and testimonial quotes
+// Use #fff for white (Used for backgrounds, text on dark backgrounds, and buttons)
+
+
+//---- Fonts ----//
+
+// Syntax: font: font-style [normal, italic, oblique, initial, inherit]
+//            font-variant [normal, small-caps, initial, inherit]
+//            font-weight [100, 200, etc., or bold, light, thin, heavy, etc.]
+//            font-size/line height [i.e., 2em/30px]
+//            font-family ['Lato', sans-serif]
+
+$base: 'Lato', sans-serif;
+$sm-caps: normal normal 400 14px / 1.42857 'Lato', sans-serif; // text-transform: uppercase (used for nav-links and company records section)
+$title: normal normal 400 36px / 1.2 'Lato', sans-serif; // color: $black (for site-map title), $lt-navy (for all other titles on light backgrounds), or #fff (for light backgrounds)
+$subtitle: normal normal 400 18px / 1.42857 'Lato', sans-serif; // color: $lt-navy
+$text: normal normal 400 12px / 1.2 'Lato', sans-serif; // color: $med-gray; if date, text-transform: uppercase
+$futuristic: normal normal 400 8px / 1 'Orbitron', sans-serif; // to go with logo, color: $lt-navy

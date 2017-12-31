@@ -1,0 +1,21 @@
+<div class="blur-page"
+  [ngStyle]=transitionOpacity()>
+  <form>
+    <button (click)="exitModal()" type="button"
+      class="back-button">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+      <p>Back</p>
+    </button>
+    <h1>SPL Query</h1>
+    <label for="spl">SPL</label>
+    <textarea readonly [(ngModel)]="splUseCase.spl" name="spl" id="spl"></textarea>
+    <button class="copy-button" (click)="copyToClipboard()" type="button">
+      <span *ngIf="copied">
+        <i class="fa fa-check" aria-hidden="true"></i> Copied
+      </span>
+      <span *ngIf="!copied">
+        <i class="fa fa-clipboard" aria-hidden="true"></i> Copy to Clipboard
+      </span>
+    </button>
+  </form>
+</div>

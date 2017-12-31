@@ -1,0 +1,21 @@
+<div class="blur-page"
+  [ngStyle]=transitionOpacity()>
+  <form>
+    <button (click)="exitModal()" type="button"
+      class="back-button">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+      <p>Back</p>
+    </button>
+    <h1>Dashboard XML</h1>
+    <label for="xml">XML</label>
+    <textarea readonly [(ngModel)]="dashboard.dashboardXML" name="xml" id="xml"></textarea>
+    <button class="copy-button" (click)="copyToClipboard()" type="button">
+      <span *ngIf="copyXML">
+        <i class="fa fa-check" aria-hidden="true"></i> Copied
+      </span>
+      <span *ngIf="!copyXML">
+        Copy to Clipboard
+      </span>
+    </button>
+  </form>
+</div>

@@ -1,0 +1,78 @@
+<div class="blur-page"
+  [ngStyle]=transitionOpacity()>
+  <form action="/dashboards" method="POST">
+    <button (click)="exitModal()"
+      class="back-button" type="button">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+      <p>Back</p>
+    </button>
+    <h1>Post a SPLUNK Dashboard</h1>
+    <label for="dashboardName">Dashboard</label>
+    <input [(ngModel)]="dashboard.dashboardName" (ngModelChange)="validateDashboardName()" autocomplete="off" type="text" name="dashboardName" placeholder="Event and license use by host - Windows">
+    <p *ngIf="!dashboardNameValid && dashboard.dashboardName !== ''" class="validation-error">This dashboard already exists. Please change its name to continue.</p>
+    <p *ngIf="!dashboard.dashboardName" class="validation-error">This field must not be empty</p>
+    <i *ngIf="dashboardNameValid && dashboard.dashboardName" class="fa fa-check validated" aria-hidden="true"></i>
+
+    <label for="domain">Domain</label>
+    <div class="boxes">
+      <div class="filter-container">
+        <select [(ngModel)]="dashboard.domain" (ngModelChange)="validateDomain()" name="domain">
+          <option [ngValue]="null" disabled>Select A Domain</option>
+          <option *ngFor="let domain of domains" [ngValue]="domain">
+            {{ domain }}
+          </option>
+        </select>
+        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+      </div>
+      <p *ngIf="!dashboard.domain" class="validation-error">A domain must be selected</p>
+      <i *ngIf="dashboard.domain" class="fa fa-check validated" aria-hidden="true"></i>
+    </div>
+
+    <label for="dashboardXML">XML</label>
+    <textarea [(ngModel)]="dashboard.dashboardXML" (ngModelChange)="validateXML()" name="xml"
+    placeholder='<form>
+        <label>vSOC - Event and license use by host Clone</label>
+        <fieldset submitButton="true">
+        ... '>
+  </textarea>
+  <p *ngIf="!xmlValid" class="validation-error">XML dashboards must be unique</p>
+  <i *ngIf="xmlValid && dashboard.dashboardXML" class="fa fa-check validated" aria-hidden="true"></i>
+
+  <!--Required Log Sources Tagging UI-->
+  <label for="log-src-dropdown">Required Log Sources</label>
+  <div class="log-sources-group">
+    <input [(ngModel)]="tagToAdd" (keyup.enter)="addTag()"
+    class="log-src-dropdown" type="text" name="tagToAdd" list="log-src-dropdown"
+    autocomplete="off" placeholder="Double-click to see existing, or add new">
+    <datalist id="log-src-dropdown" data-toggle="dropdown">
+        <option
+          *ngFor="let logSrc of logSrcs; let index = i"
+          value="{{ logSrc }}">
+        </option>
+    </datalist>
+    <button (click)="addTag()"
+    class="add-tag-button" type="button">Add</button>
+  </div>
+  <div class="tag-list">
+    <p *ngFor="let logSrc of specificLogSrcs; let i = index"
+      class="tag">
+      {{ logSrc }}
+      <i class="fa fa-times-circle" aria-hidden="true"
+        (click)="deleteTag(i)">
+      </i>
+    </p>
+  </div>
+
+  <label for="comments">Comments</label>
+  <textarea [(ngModel)]="dashboard.comments"
+  type="text" name="comments" placeholder="Multiple Clients" class="comments"></textarea>
+  <button (click)="postDashboard()" type="button">
+    <span *ngIf="fetchingFromDB">
+      <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> Saving Query
+    </span>
+    <span *ngIf="!fetchingFromDB">
+      Save
+    </span>
+  </button>
+</form>
+</div>

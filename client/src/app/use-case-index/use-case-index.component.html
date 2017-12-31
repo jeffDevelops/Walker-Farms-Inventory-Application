@@ -1,0 +1,141 @@
+<app-create-use-case *ngIf="modals.create.displayed"></app-create-use-case>
+<app-edit-use-case *ngIf="modals.edit.displayed"></app-edit-use-case>
+<app-view-use-case *ngIf="modals.view.displayed"></app-view-use-case>
+
+<div *ngIf="useCases"
+  class="container"
+  [ngStyle]="setStyles()">
+
+  <header [@navState]="navState">
+    <div class="column-titles">
+      <div class="title-header"><p>Use Case ( {{ useCases?.length }} total )</p></div>
+      <div class="domain-header"><p>Domain</p></div>
+      <div class="log-srcs-header"><p>Required Log Sources</p></div>
+      <div class="comments-header"><p>Comments</p></div>
+      <div class="edit-header"><p>Edit</p></div>
+    </div>
+  </header>
+
+  <div class="table-functions-container"
+  [@navState]="navState">
+    <div class="table-functions">
+
+    <div class="buttons">
+      <button class="create-new"
+        (click)="toggleCreate()">
+        <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+        Create New
+      </button>
+
+      <button class="export-button"
+        (click)="download()">
+        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+        Export ({{ (displayedUseCases)?.length }}) to CSV
+      </button>
+    </div>
+
+      <!--Filter Boxes-->
+      <div class="boxes">
+        <!-- Required Log Srcs Filter -->
+        <div class="log-srcs-filter-container">
+          <div class="log-srcs-filter"
+            (mousedown)="filterExpanded ? null : toggleLogSrcFilter($event)">
+            <p *ngIf="selectedLogSrcs.length === 0">Filter By Required Log Sources</p>
+            <p *ngIf="selectedLogSrcs.length > 0">
+              <span *ngFor="let selectedLogSrc of selectedLogSrcs; let isLast = last">{{ selectedLogSrc }}{{isLast ? '' : ',&nbsp;'}}</span>
+            </p>
+            <i class="fa fa-sort-desc" aria-hidden="true"></i>
+              <div class="expanded-filter" #expandedFilter
+                *ngIf="filterExpanded" tabindex="0" (focusout)="closeLogSrcFilter($event)">
+                <ul>
+                  <li *ngFor="let logSrc of logSrcObjects; let i = index"
+                    (click)="toggleLogSrcSelection(i)"
+                    [class.selected]="logSrcObjects[i].selected">
+                    {{ logSrc.logSrc }}
+                    <i *ngIf="!logSrcObjects[i].selected"
+                      class="fa fa-square-o" aria-hidden="true"></i>
+                    <i *ngIf="logSrcObjects[i].selected"
+                      class="fa fa-check-square-o" aria-hidden="true"></i>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+        <!-- Domain Filter-->
+        <div class="filter-container">
+          <select [(ngModel)]="selected" (ngModelChange)="onDomainSelect(selected)" name="domain">
+            <option [ngValue]="null" disabled>Filter By Domain</option>
+            <option *ngFor="let domain of domains" [ngValue]="domain">
+              {{ domain }}
+            </option>
+          </select>
+          <i class="fa fa-sort-desc" aria-hidden="true"></i>
+        </div>
+        <!--Search Filter-->
+        <div class="search-container">
+          <input class="search" type="text" [(ngModel)]="term" (ngModelChange)="onSearch()" placeholder="Filter By Keyword" />
+          <i class="fa fa-search dropdown-icon" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p class="filter-text" *ngIf="logSrcFilterEngaged || domainFilterEngaged || searchFilterEngaged">
+      Filtered by
+      {{ selected ? 'Domain: ' + '"' + selected + '"&nbsp;&nbsp;&nbsp;' : '' }}
+      {{ term ? 'Keyword: ' + '"' + term + '"&nbsp;&nbsp;&nbsp;' : '' }}
+      {{ selectedLogSrcs.length > 0 ? 'Required Log Sources: ' : '' }}
+      <span *ngFor="let selectedLogSrc of selectedLogSrcs; let isLast = last">
+        {{ '"' + selectedLogSrc + '"' }}{{ isLast ? '' : ', '}}
+      </span>
+    </p>
+  </div>
+
+  <!-- LOADER -->
+  <div *ngIf="useCases.length === 0" class="animation-parent">
+    <div *ngIf="useCases.length === 0" class="logo-container"></div>
+  </div>
+
+  <!-- DATA -->
+  <div *ngFor="let useCase of displayedUseCases; index as i"
+    class="use-case"><!--| filter:term; index as i" -->
+    <div class=" tooltip field-container title-container">
+      <span class="tooltiptext">Click to view SPL</span>
+      <p (click)="toggleSpl(i)">{{ useCase.useCase }}</p>
+    </div>
+    <div class="field-container domain-container">
+      <p><span>Domain</span>{{ useCase.domain }}</p>
+    </div>
+    <!-- <div class="field-container spl-container">
+      <div class="tooltip">
+       <span class="tooltiptext">Copy to clipboard</span>
+      <button>
+        <i class="fa fa-clipboard" aria-hidden="true"></i>
+      </button>
+      </div>
+    <div class="tooltip">
+      <span class="tooltiptext">{{ useCase.spl }}</span>
+      <button class="view_button">
+        View
+      </button>
+    </div>
+    </div> -->
+    <div class="field-container log-srcs-container">
+      <span *ngIf="useCase.requiredLogSrcs.length > 0">Required Log Sources</span>
+      <div *ngFor="let logSrc of useCase.requiredLogSrcs; let isLast = last">
+        <p>{{ logSrc.logSrc }}{{isLast ? '' : ',&nbsp;'}}</p>
+      </div>
+    </div>
+    <div class="field-container comments-container">
+      <p><span *ngIf="useCase.comments">Comments</span>{{ useCase.comments }}</p>
+    </div>
+    <div class="field-container edit-container">
+      <button (click)="toggleEdit(i)" class="edit-button">
+       <i class="fa fa-pencil" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

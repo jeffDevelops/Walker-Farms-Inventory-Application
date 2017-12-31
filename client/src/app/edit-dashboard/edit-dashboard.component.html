@@ -1,0 +1,74 @@
+<div class="blur-page"
+  [ngStyle]=transitionOpacity()>
+  <form>
+    <button (click)="confirmModalExit()" type="button"
+      class="back-button">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+      <p>Back</p>
+    </button>
+    <h1>Edit</h1>
+    <label for="dashboard">Dashboard Name</label>
+    <input [(ngModel)]="dashboard.dashboardName" (ngModelChange)="validateDashboardName()" type="text" name="dashboard" autocomplete="off">
+    <p *ngIf="!dashboardNameValid && dashboard.dashboardName !== ''" class="validation-error">This dashboard search already exists. Please change its name to continue.</p>
+    <p *ngIf="!dashboard.dashboardName" class="validation-error">This field must not be empty</p>
+    <i *ngIf="dashboardNameValid && dashboard.dashboardName" class="fa fa-check validated" aria-hidden="true"></i>
+
+    <label for="domain">Domain</label>
+    <div class="boxes">
+      <div class="filter-container">
+        <select [(ngModel)]="dashboard.domain" name="domain">
+          <option *ngFor="let domain of domains" [ngValue]="domain">
+            {{ domain }}
+          </option>
+        </select>
+        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+      </div>
+    </div>
+    <label for="dashboardXML">XML</label>
+    <textarea [(ngModel)]="dashboard.dashboardXML" name="dashboardXML"></textarea>
+
+    <!--Required Log Sources Tagging UI-->
+    <label for="log-src-dropdown">Required Log Sources</label>
+    <div class="log-sources-group">
+      <input [(ngModel)]="tagToAdd" (keyup.enter)="addTag()"
+      class="log-src-dropdown" type="text" name="tagToAdd" list="log-src-dropdown"
+      autocomplete="off" placeholder="Double-click to see existing, or add new">
+      <datalist id="log-src-dropdown" data-toggle="dropdown">
+          <option
+            *ngFor="let logSrc of logSrcs; let index = i"
+            value="{{ logSrc }}">
+          </option>
+      </datalist>
+      <button (click)="addTag()"
+      class="add-tag-button" type="button">Add</button>
+    </div>
+    <div class="tag-list">
+      <p *ngFor="let logSrc of dashboard.requiredLogSrcs; let i = index"
+        class="tag">
+        {{ logSrc.logSrc }}
+        <i class="fa fa-times-circle" aria-hidden="true"
+          (click)="deleteTag(i)">
+        </i>
+      </p>
+    </div>
+
+    <label for="comments">Comments</label>
+    <textarea [(ngModel)]="dashboard.comments" type="text" name="comments" class="comments"></textarea>
+    <button (click)="updateDashboard()" type="button">
+      <span *ngIf="updatingDB">
+        <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> Updating Dashboard
+      </span>
+      <span *ngIf="!updatingDB">
+        Update
+      </span>
+    </button>
+    <button class="delete-button" (click)="deleteDashboard()" type="button">
+      <span *ngIf="deletingFromDB">
+        <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i> Deleting Dashboard
+      </span>
+      <span *ngIf="!deletingFromDB">
+        Delete This Dashboard
+      </span>
+    </button>
+  </form>
+</div>

@@ -1,0 +1,226 @@
+@import '../../utilities/scss_vars';
+
+.blur-page {
+  height: 100vh;
+  overflow: auto;
+  position: fixed;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 3s;
+  z-index: 10;
+}
+
+form {
+  background: #fff;
+  display: block;
+  margin: 0 auto;
+  max-width: 600px;
+  overflow: auto;
+  padding: 15px;
+  position: relative;
+  width: 80%;
+
+  .back-button {
+    background: none;
+    border: 0;
+    color: $lt-navy;
+    font-size: 1.5em;
+    height: 80px;
+    outline: none;
+    padding: 5px 0 0;
+    position: absolute;
+    right: 25px;
+    top: -30px;
+    transition: color .5s;
+    width: 80px;
+
+    i {
+      font-size: 1.3em;
+      padding: 15px 10px 0 0;
+      color: $lt-navy;
+    }
+
+    p {
+      display: inline;
+      position: absolute;
+      top: 28px;
+      font-size: .6em;
+    }
+
+    &:hover,
+    &:hover i {
+      color: $drk-black;
+      transition: color .7s;
+      background-color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  h1 {
+    box-sizing: border-box;
+    color: $black;
+    font: $title;
+    font-size: 1.8em;
+    margin-top: 0;
+  }
+
+  label {
+    box-sizing: border-box;
+    display: block;
+    font: $text;
+    margin: 15px 0 5px;
+  }
+
+  input {
+    border: 1px solid $input-border;
+    box-sizing: border-box;
+    color: $text;
+    display: block;
+    font-family: $base;
+    font-size: 1em;
+    height: 40px;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+  }
+
+  input::placeholder {
+    color: $placeholder-text;
+  }
+
+  textarea {
+    border: 1px solid $input-border;
+    box-sizing: border-box;
+    color: $text;
+    display: block;
+    font-family: $base;
+    font-size: 1em;
+    height: 200px;
+    margin: 0;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .filter-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+
+    select {
+      box-sizing: border-box;
+      text-align: left;
+      width: 100%;
+      height: 40px;
+      font: $text;
+      font-size: 1em;
+      border-radius: 0;
+      border: 1px solid $input-border;
+      background: transparent;
+      -webkit-appearance: none;
+      outline: none;
+      padding: 0 10px;
+      &:active, &:focus {
+        outline: none;
+      }
+    }
+    .fa-sort-desc:before {
+      box-sizing: border-box;
+      font-size: 1em;
+      position: absolute;
+      top: 10px;
+      right: 4%;
+      z-index: 1;
+    }
+  }
+
+  textarea.comments {
+    height: 100px;
+  }
+
+  .log-sources-group {
+    display: flex;
+    justify-content: space-between;
+
+  .log-src-dropdown {
+      display:flex;
+      width: 80%;
+    }
+
+    .add-tag-button {
+      cursor: pointer;
+      margin: 0;
+      width: 18%;
+    }
+  }
+
+  .tag-list {
+    margin-top: 10px;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
+    height: auto;
+    min-height: 40px;
+    background-color: $lt-gray;
+    border: 1px solid $input-border;
+
+    p {
+      box-sizing: border-box;
+      display: inline-block;
+      background-color: $navy;
+      border-radius: 4px;
+      padding: 4px 8px;
+      margin: 3px 3px 0 0;
+      color: #fff;
+      box-shadow: none;
+      border: 0;
+      font: $text;
+      font-size: .9em;
+
+      i {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  button {
+    background-color: $lt-navy;
+    border: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    height: 40px;
+    margin-top: 15px;
+    outline: none;
+    transition: background-color .6s;
+    width: 100%;
+
+    &:hover {
+      background: $drk-black;
+      transition: background-color .7s;
+    }
+  }
+
+  .delete-button {
+    background-color: $red;
+
+    &:hover {
+      background-color: $drk-red;
+    }
+  }
+}
+
+.validated {
+  color: $lt-navy;
+  font-size: .6em;
+  margin-top: 5px;
+}
+
+.validation-error {
+  color: $red;
+  margin-top: 5px;
+  font-size: .6em;
+}

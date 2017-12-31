@@ -1,0 +1,133 @@
+@import '../../utilities/scss_vars';
+
+.blur-page {
+  height: 100vh;
+  overflow: auto;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 3s;
+  z-index: 11;
+}
+
+form {
+  background: #fff;
+  border: 1px solid $lt-navy;
+  display: block;
+  margin: 100px auto;
+  max-width: 600px;
+  overflow: auto;
+  padding: 15px;
+  position: relative;
+  width: 70%;
+
+  .back-button {
+    background: none;
+    border: 0;
+    color: $lt-navy;
+    font-size: 1.5em;
+    height: 80px;
+    outline: none;
+    padding: 5px 0 0;
+    position: absolute;
+    right: 30px;
+    top: -20px;
+    transition: color .5s;
+    width: 80px;
+
+    i {
+      font-size: 1.7em;
+      padding: 15px 10px 0 0;
+      color: $lt-navy;
+    }
+
+    p {
+      display: inline;
+      position: absolute;
+      top: 28px;
+      font-size: .6em;
+    }
+
+    &:hover,
+    &:hover i {
+      color: $drk-black;
+      transition: color .7s;
+      background-color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  h1 {
+    box-sizing: border-box;
+    color: $black;
+    font: $title;
+    font-size: 1.8em;
+    margin-top: 0;
+  }
+
+  label {
+    box-sizing: border-box;
+    display: block;
+    font: $text;
+    margin: 25px 0 10px;
+  }
+
+  input {
+    border: 1px solid $input-border;
+    box-sizing: border-box;
+    color: $text;
+    display: block;
+    font-family: $base;
+    font-size: 1em;
+    height: 40px;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+  }
+
+  input::placeholder {
+    color: $placeholder-text;
+  }
+
+  textarea {
+    border: 1px solid $input-border;
+    box-sizing: border-box;
+    color: $text;
+    display: block;
+    font-family: $base;
+    font-size: 1em;
+    height: 200px;
+    margin: 0;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+  }
+
+  button {
+    background-color: $lt-navy;
+    border: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    height: 40px;
+    margin-top: 15px;
+    outline: none;
+    transition: background-color .6s;
+    width: 100%;
+
+    &:hover {
+      background: $drk-black;
+      transition: background-color .7s;
+    }
+  }
+
+  .copy-button {
+    background-color: $lt-navy;
+
+    &:hover {
+      background-color: $drk-black;
+    }
+  }
+}

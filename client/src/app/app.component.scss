@@ -1,0 +1,68 @@
+@import '../utilities/scss_vars';
+
+.app-header {
+  background-color: rgba(255, 255, 255, .98);
+  height: 180px;
+  overflow: auto;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  nav {
+    margin: 15px auto;
+    width: 90%;
+    max-width: 1400px;
+
+    a {
+      color: $blue-gray;
+      font: $sm-caps;
+      padding: 5px 0;
+      text-decoration: none;
+      text-transform: uppercase;
+      margin-right: 75px;
+    }
+  }
+}
+
+.header-container {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 30px 0 0;
+  position: relative;
+  top: 0;
+  width: 90%;
+  max-width: 1400px;
+
+  .logo {
+    display: block;
+    width: 150px;
+  }
+
+  .vSOC-container {
+    position: relative;
+    top: -5px;
+    float: right;
+
+    .vSOC-logo {
+      display: block;
+      width: 135px;
+    }
+
+    h6 {
+      color: $text;
+      font: $futuristic;
+      letter-spacing: .13em;
+      position: absolute;
+      right: 15px;
+      text-transform: uppercase;
+      top: 70px;
+    }
+  }
+}
+
+.account-for-fixed-header {
+  height: 275px;
+  width: 100%;
+}
