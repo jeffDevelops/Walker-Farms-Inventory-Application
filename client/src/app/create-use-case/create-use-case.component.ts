@@ -41,16 +41,16 @@ export class CreateUseCaseComponent implements OnInit {
   }
 
   domains: Array<string> = [
-    'Access',
-    'Audit',
-    'Behavior Analytics',
-    'Endpoint',
-    'Threat',
-    'Network',
-    'Vulnerability',
-    'Identity | Asset',
-    'Machine Learning',
-    'Infrastructure'
+    'Lorem',
+    'Ipsum',
+    'Dolor',
+    'Sit',
+    'Amet',
+    'Consectetur',
+    'Adipicising',
+    'Elit',
+    'Nulla',
+    'Sodales'
   ];
 
   useCaseNameValid: boolean = true;

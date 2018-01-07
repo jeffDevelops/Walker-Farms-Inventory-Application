@@ -64,6 +64,10 @@
     z-index: 3;
   }
 
+  i.menu {
+    display: none;
+  }
+
   .column-titles {
     align-self: center;
     box-sizing: border-box;
@@ -581,9 +585,16 @@
     margin-right: 10px;
     padding: 0;
 
-    i {
+    i.context-menu {
+      display: none;
       text-align: center;
     }
+
+    i.edit-only {
+      display: block;
+      text-align: center;
+    }
+    
   }
 
   .use-case:nth-child(odd) {
@@ -636,107 +647,238 @@ app-create-use-case, app-edit-use-case {
 }
 
 
-// @media(max-width: 863px) {
-//   .container {
-//     width: 100%;
-//
-//     header {
-//       display: none;
-//     }
-//
-//     .use-case {
-//       position: relative;
-//       border-top: 0;
-//       border-left: 0;
-//       border-right: 0;
-//       margin: 0;
-//       display: block;
-//
-//       .field-container {
-//         width: 75%;
-//         margin: 0;
-//         display: block;
-//
-//         span {
-//           display: block;
-//           font: $text;
-//           font-weight: bold;
-//           margin-top: 8px;
-//         }
-//
-//         p {
-//           margin: 5px 0;
-//           overflow-wrap: break-word;
-//           word-wrap: break-word;
-//           -ms-word-break: break-all;
-//           word-break: break-word;
-//           -ms-hyphens: auto;
-//           -moz-hyphens: auto;
-//           -webkit-hyphens: auto;
-//           hyphens: auto;
-//
-//           span {
-//             display: block;
-//           }
-//         }
-//       }
-//
-//       .title-container {
-//         p {
-//           text-transform: uppercase;
-//         }
-//       }
-//
-//       .log-srcs-container {
-//         padding: 0 10px;
-//         justify-content: flex-start;
-//         span {
-//           display: block;
-//         }
-//         div {
-//           display: inline;
-//           font: $text;
-//           font-weight: bold;
-//
-//           p {
-//             margin: 5px 0;
-//             display: inline;
-//           }
-//         }
-//       }
-//
-//       .edit-container {
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         padding: 0;
-//         position: absolute;
-//         width: 20%;
-//         top: 0;
-//         bottom: 0;
-//         right: 0;
-//         left: auto;
-//
-//         button {
-//           height: 50px;
-//           width: 50px;
-//           background-color: $lt-navy;
-//           margin: 0 auto;
-//
-//           i {
-//             color: #fff;
-//           }
-//         }
-//       }
-//     }
-//
-//     .use-case:nth-child(even) {
-//       background-color: $lt-gray;
-//     }
-//     .use-case:nth-child(odd) {
-//       background-color: #fff;
-//     }
-//
-//
-//   }
-// }
+@media(max-width: 863px) {
+
+  .hide-on-small-screens {
+    display: none;
+  }
+  
+  .container {
+    width: 100%;
+    margin-bottom: 0;
+
+    .filter-text {
+      padding: 10px 10px;
+      margin: 0;
+    }
+
+    .filter-text:last-child {
+      padding-top: 0;
+    }
+
+    header {
+      top: 0;
+      height: 70px;
+
+      .column-titles {
+        display: none;
+      }
+
+      i.menu {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 2.4em;
+        align-items: center;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
+
+    .table-functions-container {
+      height: auto;
+      top: 70px;
+
+      .table-functions {
+        display: block;
+        width: 100%;
+        height: 150px;
+        border-bottom: 1px solid $input_border;
+
+
+        .buttons {
+          display: block;
+          width: 100%;
+          margin: 0 auto;
+          background: #fff;
+          
+          .create-new {
+            height: 50px;
+            width: 100%;
+            margin: 0;
+            border-bottom: 1px solid $input_border;
+            transition: background-color .3s;
+
+            &:hover {
+              background-color: $input_border;
+              transition: background-color .7s;
+            }
+
+            i {
+              padding-left: 10px;
+            }
+          }
+
+          .export-button {
+            height: 50px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid $input_border;
+            transition: background-color .3s;
+
+            &:hover {
+              background-color: $input_border;
+              transition: background-color .7s;
+            }
+            
+            i {
+              padding: 0 18px 0 10px;
+            }
+          }
+        }
+        .boxes {
+          height: 50px;
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          box-shadow: 0 4px 20px -6px $black;
+
+          .log-srcs-filter-container {
+            padding: 0;
+            width: 30%;
+          }
+
+          .filter-container {
+            width: 30%;
+
+            .fa-sort-desc:before {
+              top: 7px;
+              right: 6%;
+            }
+          }
+
+          .search-container {
+            padding: 0;
+            width: 30%;
+
+            i::before {
+              top: 10px;
+            }
+          }
+        }
+      }
+    }
+
+    .filter-results {
+      transition: margin-top .3s;
+    }
+
+    .use-case {
+      position: relative;
+      border: 0;
+      margin: 0;
+      display: block;
+
+      .field-container {
+        width: 75%;
+        margin: 0;
+        display: block;
+
+        span {
+          display: block;
+          font: $text;
+          font-weight: bold;
+          margin-top: 8px;
+        }
+
+        p {
+          margin: 5px 0;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+          -ms-word-break: break-all;
+          word-break: break-word;
+          -ms-hyphens: auto;
+          -moz-hyphens: auto;
+          -webkit-hyphens: auto;
+          hyphens: auto;
+
+          span {
+            display: block;
+          }
+        }
+      }
+
+      .title-container {
+
+        p {
+          text-transform: uppercase;
+        }
+      }
+
+      .log-srcs-container {
+        padding: 0 10px;
+        justify-content: flex-start;
+        span {
+          display: block;
+        }
+        div {
+          display: inline;
+          font: $text;
+          font-weight: bold;
+
+          p {
+            margin: 5px 0;
+            display: inline;
+          }
+        }
+      }
+
+      .edit-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        position: absolute;
+        width: 20%;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: auto;
+
+        button {
+          height: 35%;
+          width: 50px;
+          margin: 0;
+          
+          i.edit-only {
+            display: none;
+          }
+
+          i.context-menu {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 2.8em;
+            color: $med_gray;
+          }
+        }
+      }
+    }
+
+    .tooltip:hover .tooltiptext {
+      display: none;
+      visibility: hidden;
+    }
+
+    .tooltip::after, .tooltiptext::after {
+      display: none;
+    }
+
+    .use-case:nth-child(even) {
+      background-color: $lt-gray;
+    }
+    .use-case:nth-child(odd) {
+      background-color: #fff;
+    }
+  }
+}

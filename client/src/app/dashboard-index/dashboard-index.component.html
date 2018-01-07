@@ -14,9 +14,13 @@
       <div class="comments-header"><p>Comments</p></div>
       <div class="edit-header"><p>Edit</p></div>
     </div>
+    <i class="menu material-icons"
+      (click)="toggleMenu()">menu
+    </i>
   </header>
 
   <div class="table-functions-container"
+  [ngStyle]="setMenuStyles()"
   [@navState]="navState">
     <div class="table-functions">
 
@@ -61,7 +65,7 @@
               </div>
           </div>
         </div>
-
+        <!-- Domain Filter-->
         <div class="filter-container">
           <select [(ngModel)]="selected" (ngModelChange)="onSelect(selected)" name="domain">
             <option [ngValue]="null" disabled>Filter By Domain</option>
@@ -80,12 +84,19 @@
     </div>
   </div>
 
-  <div>
+  <div class="filter-results"
+    [ngStyle]="compensateForMenu()">
+    <p class="filter-text" *ngIf="logSrcFilterEngaged || domainFilterEngaged || searchFilterEngaged">
+        {{ displayedDashboards?.length }} found
+    </p>
     <p class="filter-text" *ngIf="logSrcFilterEngaged || domainFilterEngaged || searchFilterEngaged">
       Filtered by
       {{ selected ? 'Domain: ' + '"' + selected + '"&nbsp;&nbsp;&nbsp;' : '' }}
       {{ term ? 'Keyword: ' + '"' + term + '"&nbsp;&nbsp;&nbsp;' : '' }}
-      {{ selectedLogSrcs.length > 0 ? 'Required Log Sources: ' : '' }}<span *ngFor="let selectedLogSrc of selectedLogSrcs; let isLast = last">{{ '"' + selectedLogSrc + '"' }}{{ isLast ? '' : ', '}}</span>
+      {{ selectedLogSrcs.length > 0 ? 'Required Log Sources: ' : '' }}
+      <span *ngFor="let selectedLogSrc of selectedLogSrcs; let isLast = last">
+        {{ '"' + selectedLogSrc + '"' }}{{ isLast ? '' : ', '}}
+      </span>
     </p>
   </div>
 
@@ -93,7 +104,6 @@
   <div *ngIf="dashboards.length === 0" class="animation-parent">
     <div *ngIf="dashboards.length === 0" class="logo-container"></div>
   </div>
-
 
   <!-- DATA -->
   <div *ngFor="let dashboard of displayedDashboards; index as i"
@@ -103,7 +113,7 @@
       <p (click)="toggleXML(i)">{{ dashboard.dashboardName }}</p>
     </div>
     <div class="field-container domain-container">
-      <p>{{ dashboard.domain }}</p>
+      <p><span *ngIf="dashboard.domain">Domain</span>{{ dashboard.domain }}</p>
     </div>
     <!-- <div class="field-container xml-container">
       <div class="tooltip">
@@ -126,11 +136,12 @@
       </div>
     </div>
     <div class="field-container comments-container">
-      <p>{{ dashboard.comments }}</p>
+      <p><span *ngIf="dashboard.comments">Comments</span>{{ dashboard.comments }}</p>
     </div>
     <div class="field-container edit-container">
       <button (click)="toggleEdit(i)" class="edit-button">
-        <i class="fa fa-pencil" aria-hidden="true"></i>
+        <i class="edit-only fa fa-pencil" aria-hidden="true"></i>
+        <i class="context-menu material-icons">more_vert</i>
       </button>
     </div>
   </div>

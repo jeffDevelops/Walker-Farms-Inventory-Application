@@ -31,10 +31,29 @@ export class DashboardIndexComponent implements OnInit {
   // Scroll detection for navbar
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    if (window.pageYOffset > 0) {
-      this.navState = 'collapsed';
+    if (window.innerWidth > 863) {
+      if (window.pageYOffset > 0) {
+        this.navState = 'collapsed';
+      } else {
+        this.navState = 'fullHeight';
+      }
     } else {
       this.navState = 'fullHeight';
+    }
+  }
+
+  @HostListener('window:resize', [])
+  onWindowResize() {
+    if (window.innerWidth < 864) {
+      this.menuExpanded = false;
+      this.navState = 'fullHeight';
+    } else {
+      this.menuExpanded = true;
+      if (window.pageYOffset > 0) {
+        this.navState = 'collapsed';
+      } else {
+        this.navState = 'fullHeight';
+      }
     }
   }
 
@@ -49,6 +68,7 @@ export class DashboardIndexComponent implements OnInit {
   viewInitialized: boolean = false;
 
   navState = 'fullHeight'; // Navigation animation
+  menuExpanded: boolean;
 
   // GET ALL DASHBOARDS
   subscription: Subscription;
@@ -77,16 +97,16 @@ export class DashboardIndexComponent implements OnInit {
   domainFilterEngaged: boolean = false;
   domainFilterResults: Array<any> = [];
   domains: Array<string> = [
-    'Access',
-    'Audit',
-    'Behavior Analytics',
-    'Endpoint',
-    'Threat',
-    'Network',
-    'Vulnerability',
-    'Identity | Asset',
-    'Machine Learning',
-    'Infrastructure',
+    'Lorem',
+    'Ipsum',
+    'Dolor',
+    'Sit',
+    'Amet',
+    'Consectetur',
+    'Adipicising',
+    'Elit',
+    'Nulla',
+    'Sodales',
     'All'
   ];
 
@@ -238,8 +258,6 @@ export class DashboardIndexComponent implements OnInit {
     this.displayedDashboards = this.domainFilterResults;
   }
 
-
-
   // Search FILTER
   onSearch() {
     if (!this.term) {
@@ -349,7 +367,7 @@ export class DashboardIndexComponent implements OnInit {
     let styles = {
       'filter': this.modals.create.displayed || this.modals.edit.displayed || this.modals.view.displayed ? 'blur(2px)' : 'blur(0px)',
       'overflow': this.modals.create.displayed || this.modals.edit.displayed || this.modals.view.displayed ? 'hidden' : 'auto',
-      'transition': 'all 1s'
+      'transition': 'filter 1s, overflow 1s'
     };
     this.modals.toggleScrollUnderModal();
     return styles;
@@ -390,7 +408,21 @@ export class DashboardIndexComponent implements OnInit {
       headers: ['DASHBOARD NAME', 'DOMAIN', 'XML', 'REQD LOG SOURCES', 'COMMENTS'] //NEED TO ADD REQD LOG SOURCES
     };
       new Angular2Csv(csvDashboards, 'Dashboards', options);
-   }
+  }
+
+  toggleMenu() {
+    this.menuExpanded = !this.menuExpanded;
+  }
+
+  setMenuStyles() {
+    let menuStyle = { 'display': this.menuExpanded ? 'block' : 'none' };
+    return menuStyle;
+  }
+
+  compensateForMenu() {
+    let filterResultsStyle = { 'margin-top': this.menuExpanded && window.innerWidth < 864 ? '150px' : '0' };
+    return filterResultsStyle;
+  }
 
   // Lifecycle Hooks
   ngOnInit() {
@@ -400,6 +432,14 @@ export class DashboardIndexComponent implements OnInit {
     } else {
       this.navState = 'fullHeight';
     }
+
+     // MENU STATE
+     if (window.innerWidth > 863) {
+      this.menuExpanded = true;
+    } else {
+      this.menuExpanded = false;
+    }
+
     // INITIAL HTTP GET REQUEST FOR DASHBOARDS
     this.http.getDashboards().then( response => {
       this.dashboards = this.http.dashboardArray;

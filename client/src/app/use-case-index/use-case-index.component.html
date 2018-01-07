@@ -14,9 +14,13 @@
       <div class="comments-header"><p>Comments</p></div>
       <div class="edit-header"><p>Edit</p></div>
     </div>
+    <i class="menu material-icons"
+      (click)="toggleMenu()">menu
+    </i>
   </header>
 
   <div class="table-functions-container"
+  [ngStyle]="setMenuStyles()"
   [@navState]="navState">
     <div class="table-functions">
 
@@ -40,7 +44,7 @@
         <div class="log-srcs-filter-container">
           <div class="log-srcs-filter"
             (mousedown)="filterExpanded ? null : toggleLogSrcFilter($event)">
-            <p *ngIf="selectedLogSrcs.length === 0">Filter By Required Log Sources</p>
+            <p *ngIf="selectedLogSrcs.length === 0"><span class="hide-on-small-screens">Filter By Required </span>Log Sources</p>
             <p *ngIf="selectedLogSrcs.length > 0">
               <span *ngFor="let selectedLogSrc of selectedLogSrcs; let isLast = last">{{ selectedLogSrc }}{{isLast ? '' : ',&nbsp;'}}</span>
             </p>
@@ -80,7 +84,11 @@
     </div>
   </div>
 
-  <div>
+  <div class="filter-results"
+    [ngStyle]="compensateForMenu()">
+    <p class="filter-text" *ngIf="logSrcFilterEngaged || domainFilterEngaged || searchFilterEngaged">
+      {{ displayedUseCases?.length }} found
+    </p>
     <p class="filter-text" *ngIf="logSrcFilterEngaged || domainFilterEngaged || searchFilterEngaged">
       Filtered by
       {{ selected ? 'Domain: ' + '"' + selected + '"&nbsp;&nbsp;&nbsp;' : '' }}
@@ -105,7 +113,7 @@
       <p (click)="toggleSpl(i)">{{ useCase.useCase }}</p>
     </div>
     <div class="field-container domain-container">
-      <p><span>Domain</span>{{ useCase.domain }}</p>
+      <p><span *ngIf="useCase?.domain">Domain</span>{{ useCase.domain }}</p>
     </div>
     <!-- <div class="field-container spl-container">
       <div class="tooltip">
@@ -122,17 +130,18 @@
     </div>
     </div> -->
     <div class="field-container log-srcs-container">
-      <span *ngIf="useCase.requiredLogSrcs.length > 0">Required Log Sources</span>
+      <span *ngIf="useCase?.requiredLogSrcs.length > 0">Required Log Sources</span>
       <div *ngFor="let logSrc of useCase.requiredLogSrcs; let isLast = last">
         <p>{{ logSrc.logSrc }}{{isLast ? '' : ',&nbsp;'}}</p>
       </div>
     </div>
     <div class="field-container comments-container">
-      <p><span *ngIf="useCase.comments">Comments</span>{{ useCase.comments }}</p>
+      <p><span *ngIf="useCase?.comments">Comments</span>{{ useCase.comments }}</p>
     </div>
     <div class="field-container edit-container">
       <button (click)="toggleEdit(i)" class="edit-button">
-       <i class="fa fa-pencil" aria-hidden="true"></i>
+       <i class="edit-only fa fa-pencil" aria-hidden="true"></i>
+       <i class="context-menu material-icons">more_vert</i>
       </button>
     </div>
   </div>
