@@ -8,7 +8,6 @@ mongoose.connect(
   'mongodb://localhost/vSOC_content_library'
 );
 
-
 module.exports.UseCase = require('./usecase.js');
 module.exports.Dashboard = require('./dashboard.js');
 module.exports.LogSrc = require('./logSources.js');

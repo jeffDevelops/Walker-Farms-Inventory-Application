@@ -24,8 +24,8 @@
   max-width: 400px;
   min-height: 400px;
   overflow: hidden;
-  background-image: url('../../assets/vSOCLogoVectorDarkTransparent.png');
-  background-size: cover;
+  background-image: url('../../assets/WalkerFarmingLogo.png');
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   animation: flip step-start 2.5s infinite;
@@ -676,6 +676,7 @@ app-create-use-case, app-edit-use-case {
         display: flex;
         justify-content: flex-start;
         font-size: 2.4em;
+        color: $yellow;
         align-items: center;
         margin-left: 10px;
         cursor: pointer;
