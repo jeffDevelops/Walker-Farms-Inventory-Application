@@ -46,14 +46,12 @@ export class AppComponent implements OnInit {
     if (window.innerWidth <= 863) {
       this.navState = 'fullHeight';
       this.active = {
-        'background-color': '#9a9a9a',
-        'box-shadow': 'inset 0 0 10px 0px #404040',
+        'background-color': '#bfbfbf',
         'border-top': 'none',
         'color': '#404040'
       };
       this.inactive = {
         'background-color': 'transparent',
-        'box-shadow': 'none',
         'border-top': 'none',
         'color': '#657883'
       }
@@ -65,13 +63,11 @@ export class AppComponent implements OnInit {
       }
       this.active = {
         'background-color': 'transparent',
-        'box-shadow': 'none',
-        'border-top': '3px solid #21447e',
+        'border-top': '3px solid #2C7A2E',
         'color': '#657883'
       };
       this.inactive = {
         'background-color': 'transparent',
-        'box-shadow': 'none',
         'border-top': '3px solid transparent',
         'color': '#657883'
       }
@@ -112,31 +108,29 @@ export class AppComponent implements OnInit {
     // Check window width and set active states accordingly
     if (window.innerWidth > 863) {
       this.active = { 
-        'border-top':'3px solid #21447e',
-        'box-shadow': 'none',
+        'border-top':'2px solid #2C7A2E',
         'background-color': 'transparent',
-        'color': '#657883'
+        'color': '#2C7A2E'
       };
       this.inactive = { 
-        'border-top': '3px solid transparent',
-        'box-shadow': 'none',
+        'border-top': '2px solid transparent',
         'background-color': 'transparent',
-        'color': '#657883'
+        'color': '#2C7A2E'
       };
     } else {
       this.active = {
-        'background-color': '#9a9a9a',
-        'box-shadow': 'inset 0 0 10px 0px #404040',
+        'background-color': '#bfbfbf',
         'border-top': 'none',
-        'color': '#404040'
+        'color': '#333'
       };
       this.inactive = {
         'background-color': 'transparent',
-        'box-shadow': 'none',
         'border-top': 'none',
-        'color': '#657883'
+        'color': '#333'
       }
     }
   }
 
 }
+
+

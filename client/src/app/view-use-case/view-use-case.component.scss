@@ -13,7 +13,7 @@
 
 form {
   background: #fff;
-  border: 1px solid $lt-navy;
+  border: 1px solid $green;
   display: block;
   margin: 100px auto;
   max-width: 600px;
@@ -25,7 +25,7 @@ form {
   .back-button {
     background: none;
     border: 0;
-    color: $lt-navy;
+    color: $green;
     font-size: 1.5em;
     height: 80px;
     outline: none;
@@ -39,7 +39,7 @@ form {
     i {
       font-size: 1.7em;
       padding: 15px 10px 0 0;
-      color: $lt-navy;
+      color: $green;
     }
 
     p {
@@ -105,7 +105,7 @@ form {
   }
 
   button {
-    background-color: $lt-navy;
+    background-color: $green;
     border: 0;
     border-radius: 0;
     box-sizing: border-box;
@@ -124,10 +124,10 @@ form {
   }
 
   .copy-button {
-    background-color: $lt-navy;
+    background-color: $green;
 
     &:hover {
-      background-color: $drk-black;
+      background-color: $green_hover;
     }
   }
 }

@@ -23,7 +23,7 @@ form {
   .back-button {
     background: none;
     border: 0;
-    color: $lt-navy;
+    color: $green;
     font-size: 1.5em;
     height: 80px;
     outline: none;
@@ -37,7 +37,7 @@ form {
     i {
       font-size: 1.3em;
       padding: 15px 10px 0 0;
-      color: $lt-navy;
+      color: $green;
     }
 
     p {
@@ -165,7 +165,7 @@ form {
     p {
       box-sizing: border-box;
       display: inline-block;
-      background-color: $navy;
+      background-color: $green;
       border-radius: 4px;
       padding: 4px 8px;
       margin: 3px 3px 0 0;
@@ -182,7 +182,7 @@ form {
   }
 
   button {
-    background-color: $lt-navy;
+    background-color: $green;
     border: 0;
     border-radius: 0;
     box-sizing: border-box;
@@ -195,7 +195,7 @@ form {
     width: 100%;
 
     &:hover {
-      background: $drk-black;
+      background: $green_hover;
       transition: background-color .7s;
     }
   }
@@ -210,7 +210,7 @@ form {
 }
 
 .validated {
-  color: $lt-navy;
+  color: $green;
   font-size: .6em;
   margin-top: 5px;
 }

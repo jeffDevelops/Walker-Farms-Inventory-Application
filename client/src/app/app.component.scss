@@ -1,27 +1,14 @@
 @import '../utilities/scss_vars';
 
 .app-header {
+  display: flex;
+  justify-content: space-between;
   background-color: rgba(255, 255, 255, .98);
-  height: 180px;
+  height: 150px;
   overflow: auto;
   position: fixed;
   width: 100%;
   z-index: 1;
-
-  nav {
-    margin: 15px auto;
-    width: 90%;
-    max-width: 1400px;
-
-    a {
-      color: $blue-gray;
-      font: $sm-caps;
-      padding: 5px 0;
-      text-decoration: none;
-      text-transform: uppercase;
-      margin-right: 75px;
-    }
-  }
 }
 
 .header-container {
@@ -37,33 +24,29 @@
 
   .logo {
     display: block;
-    width: 150px;
+    width: 19%;
+    max-width: 200px;
   }
 
-  .vSOC-container {
-    position: relative;
-    top: -5px;
-    float: right;
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 60%;
+    max-width: 1400px;
 
-    .vSOC-logo {
-      display: block;
-      width: 135px;
-    }
-
-    h6 {
-      color: $text;
-      font: $futuristic;
-      letter-spacing: .13em;
-      position: absolute;
-      right: 15px;
+    a {
+      color: $med-gray;
+      font: $sm-caps;
+      text-decoration: none;
       text-transform: uppercase;
-      top: 70px;
+      margin-left: 75px;
+      border-top: 2px solid transparent;
     }
   }
 }
 
 .account-for-fixed-header {
-  height: 275px;
+  height: 245px;
   width: 100%;
 }
 
@@ -76,12 +59,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    .logo {
+      display: none;
+    }
 
+    .vSOC-container {
+      display: none;
+    }
+
+  }
+
+  .header-container {
     nav {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      margin: 0;
+      margin: 15px 0 0;
       height: 35px;
       width: 100%;
       background: #fff;
@@ -109,19 +103,6 @@
         border-radius: 0 3px 3px 0;
       }
     }
-    
-    .logo {
-      display: none;
-    }
-
-    .vSOC-container {
-      display: none;
-    }
-
-  }
-
-  .header-container {
-    display: none;
   }
 
   .account-for-fixed-header {
