@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/jeffDevelops/Walker-Farms-Inventory-Application/issues"
   },
-  "homepage": "https://github.com/jeffDevelops/Walker-Farms-Inventory-Application#readme"
+  "homepage": "https://github.com/jeffDevelops/Walker-Farms-Inventory-Application#readme",
+  "engines": {
+    "node": "8.7.0"
+  }
 }
