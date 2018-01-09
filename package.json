@@ -20,5 +20,8 @@
   "homepage": "https://github.com/jeffDevelops/Walker-Farms-Inventory-Application#readme",
   "engines": {
     "node": "8.7.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
   }
 }
