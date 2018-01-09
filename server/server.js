@@ -40,11 +40,11 @@ app.use(dashboardRoutes);
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/', function(req, res) {
-  res.sendFile('index.html');
+  res.sendFile('/client/dist/index.html');
 });
 
 app.get('/dashboards', function(req, res) {
-  res.sendFile('index.html');
+  res.sendFile('/client/dist/index.html');
 });
 
 // Start Server
